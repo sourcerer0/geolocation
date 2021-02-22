@@ -22,6 +22,12 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Type: string
 ```
 
+### self.timezone
+[Timezones Documentation](https://github.com/sourcerer0/geolocation/blob/master/docs/timezones.md)
+```
+- Type: Timezones Class
+```
+
 ### self.location
 [Geopy Documentation](https://geopy.readthedocs.io/en/stable/#geopy.location.Location)
 ```
@@ -34,21 +40,8 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Description: Most useful, formatted information about self.location
 ```
 
-### self.__timezone
-```
-- Description: Timezone. Initialized as UTC
-- Type: string
-```
-
 
 ## Methods
-### set_timezone()
-```
-- Description: Finds a probable timezone instead of UTC
-- Parameters: None
-- Return: None
-```
-
 ### up_time()
 ```
 - Description: Print time when Location was instantiated

@@ -23,6 +23,5 @@ setuptools.setup(
     install_requires=[
         'Delorean>=1.0.0',
         'geopy>=2.1.0',
-        'pytz>=2021.1',
     ]
 )

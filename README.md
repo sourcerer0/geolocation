@@ -9,7 +9,7 @@ python3 -m setup install
 ```
 
 ## Docs
-- [API Reference](https://github.com/sourcerer0/geolocation/blob/v1.0/docs/location.md)
+- [API Reference](https://github.com/sourcerer0/geolocation/blob/master/docs/location.md)
 
 ### Basic Usage
 ```python
