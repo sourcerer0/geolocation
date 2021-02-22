@@ -40,6 +40,11 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Description: Most useful, formatted information about self.location
 ```
 
+### self.coordinates
+```
+- Description: Coordinates from self.location
+```
+
 
 ## Methods
 ### up_time()
