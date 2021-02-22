@@ -21,7 +21,6 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'pycountry>=20.7.3',
         'Delorean>=1.0.0',
         'geopy>=2.1.0',
         'pytz>=2021.1',

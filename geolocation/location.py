@@ -2,7 +2,6 @@ from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 from delorean import Delorean
 
-import pycountry
 import pytz
 
 class Location():
@@ -31,13 +30,31 @@ class Location():
     def time(self): return self.__time.now().shift(self.__timezone)
 
     @property
-    def human_time(self): print(self.time.format_datetime())
-
-    @property
     def location(self): return self.__location
 
+    @location.setter
+    def location(self, place):
+        if type(place) == type(()):
+            if (place[0] <= 90 and place[0] >= -90) and (place[1] <= 90 and place[1] >= -90):
+                try:
+                    self.__location = self._geo_locator.reverse(place, addressdetails=True, language="en").raw
+                except AttributeError:
+                    print("ERROR ****** Check place input and network connection!******")
+            else:
+                print("ERROR ****** Coordinates out of range! Must be in the [-90; 90] range.******")
+                self.__location = None
+        elif type(place) == type(""):
+            try:
+                self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
+            except AttributeError:
+                print("ERROR ****** Check place input and network connection!******")
+        else: self.__location = None
+
     @property
-    def human_location(self):
+    def format_time(self): print(self.time.format_datetime())
+
+    @property
+    def format_location(self):
         try: print("Coordinates:".upper(), self.location["lat"], self.location["lon"])
         except KeyError: print("No coordinates founded")
         except TypeError:
@@ -45,19 +62,6 @@ class Location():
             return
 
         for key in self.location["address"]: print("%s: %s" % (key.upper(), self.location["address"][key]))
-
-    @location.setter
-    def location(self, place):
-        if type(place) == type(()):
-            try:
-                self.__location = self._geo_locator.reverse(place, addressdetails=True, language="en").raw
-            except AttributeError:
-                print("ERROR ****** Check place input and network connection!******")
-        elif type(place) == type(""):
-            try:
-                self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
-            except AttributeError:
-                print("ERROR ****** Check place input and network connection!******")
 
 
 

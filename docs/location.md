@@ -16,7 +16,7 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Type: Delorean Class
 ```
 
-### self.human_time
+### self.format_time
 ```
 - Description: Formatted self.time
 - Type: string
@@ -29,7 +29,7 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Type: dict
 ```
 
-### self.human_location
+### self.format_location
 ```
 - Description: Most useful, formatted information about self.location
 ```

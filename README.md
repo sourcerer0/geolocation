@@ -2,10 +2,19 @@
 Geolocation Library. Under development
 
 ## Installation
+```shell script
+git clone git@github.com:sourcerer0/geolocation.git && cd geolocation
 
+python3 -m setup install
+```
 
 ## Docs
-- [Usage & API Reference](https://github.com/sourcerer0/geolocation/blob/v1.0/docs/location.md)
+- [API Reference](https://github.com/sourcerer0/geolocation/blob/v1.0/docs/location.md)
+
+### Basic Usage
+```python
+
+```
 
 ## Contributing & Issue Tracker
 Branch & [Pull Request](https://github.com/sourcerer0/geolocation/pulls)
