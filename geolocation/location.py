@@ -18,13 +18,13 @@ class Location():
 
 
     @property
-    def time(self): return self.__time.now().shift(self.__timezone.timezone)
+    def timezone(self): return self.__timezone
+
+    @property
+    def time(self): return self.__time.now().shift(self.timezone.timezone)
 
     @property
     def format_time(self): print(self.time.format_datetime())
-
-    @property
-    def timezone(self): return self.__timezone
 
 
 
