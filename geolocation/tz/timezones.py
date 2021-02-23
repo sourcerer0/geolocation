@@ -18,8 +18,8 @@ class Timezones():
                 ## DO SOME SEARCH HERE
 
 
-        self.__ref_city = (ref_city[1], ref_city[8], ref_city[4], ref_city[5])
-        self.__timezone = ref_city[17]
+        self.__ref_city = (ref_city[0], ref_city[1], ref_city[2], ref_city[3])
+        self.__timezone = ref_city[4]
 
         return self.__timezone
 
