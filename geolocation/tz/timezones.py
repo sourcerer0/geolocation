@@ -28,4 +28,4 @@ class Timezones():
         return self.__timezone
 
     def __repr__(self):
-        return "Timezone: {}\n".format(self.__timezone)
+        return "Timezone: {}".format(self.__timezone)
