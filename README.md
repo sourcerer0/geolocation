@@ -2,10 +2,11 @@
 Geolocation Library. Under development
 
 ## Installation
-```shell script
-git clone git@github.com:sourcerer0/geolocation.git && cd geolocation
+Docker
+``` shell script
+docker pull sourcerer2/geolocation
 
-python3 -m setup install
+docker run --name geo -it sourcerer2/geolocation
 ```
 
 ## Docs
@@ -13,7 +14,26 @@ python3 -m setup install
 
 ### Basic Usage
 ```python
+from geolocation import Location
 
+somewhere = Location("San José, California, USA")
+# somewhere = Location() //location is empty
+
+somewhere.location #raw location data
+# somewhere.location = "Beirut, Libanon" //redefine location
+
+
+somewhere.coordinates #tuple
+somewhere.format_location #formatted location data
+
+somewhere.timezone #UTC
+somewhere.timezone.set_timezone() #search for location's timezone
+
+somewhere.time #raw time data
+somewhere.format_time
+
+
+somewhere.up_time() #init time
 ```
 
 ## Contributing & Issue Tracker
