@@ -10,7 +10,7 @@ docker run --name geo -it sourcerer2/geolocation
 ```
 
 ## Docs
-- [API Reference](https://github.com/sourcerer0/geolocation/blob/master/docs/location.md)
+- [API Reference](https://github.com/elleaech/geolocation/blob/master/docs/location.md)
 
 ### Basic Usage
 ```python
@@ -37,15 +37,15 @@ somewhere.up_time() #init time
 ```
 
 ## Contributing & Issue Tracker
-Branch & [Pull Request](https://github.com/sourcerer0/geolocation/pulls)
-- [Issues](https://github.com/sourcerer0/geolocation/issues)
+Branch & [Pull Request](https://github.com/elleaech/geolocation/pulls)
+- [Issues](https://github.com/elleaech/geolocation/issues)
 
 ### Get source
 ```shell script
-git clone git@github.com:sourcerer0/geolocation.git && cd geolocation
+git clone git@github.com:elleaech/geolocation.git && cd geolocation
 
 python3 -m virtualenv . && pip3 install -r requirements.txt
 ```
 
 ## License
-[Apache License 2.0](https://github.com/sourcerer0/geolocation/blob/master/LICENSE)
+[Apache License 2.0](https://github.com/elleaech/geolocation/blob/master/LICENSE)

@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="geolocation",
-    version="1.0.0-a.2",
+    version="1.0.0-a.3",
     author="Lo Han",
     author_email="lohan.uchsa@protonmail.com",
     description="Geolocation Library",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sourcerer0/geolocation",
+    url="https://github.com/elleaech/geolocation",
     packages=setuptools.find_packages(),
     keywords="bot",
     classifiers=[
