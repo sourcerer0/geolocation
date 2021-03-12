@@ -51,7 +51,7 @@ class Location():
 
     @property
     def coordinates(self): 
-        try: return (self.location["lat"], self.location["lon"])
+        try: return (float(self.location["lat"]), float(self.location["lon"]))
         except TypeError:
             print("Location not defined!")
             return
