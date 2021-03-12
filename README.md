@@ -4,7 +4,7 @@
 ## Installation
 Docker
 ``` shell script
-docker pull sourcerer2/geolocation
+docker pull sourcerer2/geolocation:tagname
 
 docker run --name geo -it sourcerer2/geolocation
 ```
