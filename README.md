@@ -27,7 +27,7 @@ somewhere.coordinates #tuple
 somewhere.format_location #formatted location data
 
 somewhere.timezone #UTC
-somewhere.timezone.set_timezone() #search for location's timezone
+somewhere.timezone.set_timezone(somewhere.coordinates) #search for location's timezone
 
 somewhere.time #raw time data
 somewhere.format_time
