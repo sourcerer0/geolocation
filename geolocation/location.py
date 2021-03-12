@@ -13,7 +13,8 @@ class Location():
         if location != None: self.location = (location)
         else: self.__location = None
 
-    def up_time(self): print(self.__time.format_datetime())
+    def up_time(self):
+        print(self.__time.now() - self.__time)
 
 
 
