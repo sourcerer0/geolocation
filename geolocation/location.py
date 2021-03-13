@@ -11,7 +11,7 @@ class Location():
         self.__timezone = Timezones()
 
         if location != None: self.location = (location)
-        else: self.__location = None
+        else: self.__location = {}
 
     def up_time(self):
         print(self.__time.now() - self.__time)
