@@ -12,6 +12,7 @@ class Timezones():
             return
 
         ref_city = {"name": "", "distance": 1000, "tz": ""}
+        self.__file.seek(0)
 
         print("Finding best timezone match...")
         for line in self.__file.readlines():
