@@ -34,7 +34,8 @@ class Location():
 
     @location.setter
     def location(self, place):
-        if type(place) == type(()):
+        if (type(place) == type(())) and (type(place[0]) == type(0.1) and type(place[1]) == type(0.1)):
+
             if (place[0] <= 90 and place[0] >= -90) and (place[1] <= 90 and place[1] >= -90):
                 try:
                     self.__location = self._geo_locator.reverse(place, addressdetails=True, language="en").raw
@@ -48,7 +49,7 @@ class Location():
                 self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
             except AttributeError:
                 print("ERROR ****** Check place input and network connection!******")
-        else: self.__location = None
+        else: self.__location = {}
 
     @property
     def coordinates(self): 
