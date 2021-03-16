@@ -14,7 +14,7 @@ class Location():
         else: self.__location = {}
 
     def up_time(self):
-        print(self.__time.now() - self.__time)
+        return (self.__time.now() - self.__time)
 
 
 
