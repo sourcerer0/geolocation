@@ -43,7 +43,7 @@ class Location():
                     print("ERROR ****** Check place input and network connection!******")
             else:
                 print("ERROR ****** Coordinates out of range! Must be in the [-90; 90] range.******")
-                self.__location = None
+                self.__location = {}
         elif type(place) == type(""):
             try:
                 self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
