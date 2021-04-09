@@ -9,47 +9,43 @@ If tuple: Coordinates
 If None (standard): Must be defined with obj.location = <tuple or string>
 ```
 
-## Attributes
-### self.time
+## Properties
+### time
 [Delorean Documentation](https://delorean.readthedocs.io/en/latest/quickstart.html#)
 ```
 - Type: Delorean Class
 ```
 
-### self.format_time
+### format_time
 ```
-- Description: Formatted self.time
+- Description: Formatted time
 - Type: string
 ```
 
-### self.timezone
+### timezone
 [Timezones Documentation](https://github.com/sourcerer0/geolocation/blob/master/docs/timezones.md)
 ```
 - Type: Timezones Class
 ```
 
-### self.location
+### location
 [Geopy Documentation](https://geopy.readthedocs.io/en/stable/#geopy.location.Location)
 ```
 - Description: Location’s raw, unparsed geocoder response. Get from Geopy documentation
 - Type: dict
 ```
 
-### self.format_location
+### format_location
 ```
-- Description: Most useful, formatted information about self.location
-```
-
-### self.coordinates
-```
-- Description: Coordinates from self.location
+- Description: Most useful, formatted information about location
 ```
 
+### coordinates
+```
+- Description: Coordinates from location
+```
 
-## Methods
-### up_time()
+### up_time
 ```
 - Description: Print time when Location was instantiated
-- Parameters: None
-- Return: None
 ```

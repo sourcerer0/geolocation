@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="geolocation",
-    version="1.0.1",
+    version="1.1.0-a.1",
     author="Lo Han",
     author_email="lohan.uchsa@protonmail.com",
     description="Geolocation Library",
@@ -19,16 +19,16 @@ setuptools.setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     install_requires=[
-        'Babel==2.9.0',
-        'Delorean==1.0.0',
-        'geographiclib==1.50',
-        'geopy==2.1.0',
-        'humanize==3.2.0',
-        'python-dateutil==2.8.1',
-        'pytz==2021.1',
-        'six==1.15.0',
-        'tzlocal==2.1'
-    ]
+        "Babel==2.9.0",
+        "Delorean==1.0.0",
+        "geographiclib==1.50",
+        "geopy==2.1.0",
+        "humanize==3.2.0",
+        "python-dateutil==2.8.1",
+        "pytz==2021.1",
+        "six==1.15.0",
+        "tzlocal==2.1",
+    ],
 )

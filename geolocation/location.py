@@ -3,65 +3,69 @@ from delorean import Delorean
 from .tz import Timezones
 
 
-class Location():
+class Location:
     def __init__(self, location=None, **kwargs):
-        self._geo_locator = Nominatim(user_agent="locator-sourcerer0")
+        self._geo_locator = Nominatim(user_agent="geolocator-elleaech")
 
         self.__time = Delorean()
         self.__timezone = Timezones()
 
-        if location != None: self.location = (location)
-        else: self.__location = {}
+        if location != None:
+            self.location = location
+        else:
+            self.__location = {}
 
+    @property
+    def timezone(self):
+        return self.__timezone
+
+    @property
+    def time(self):
+        return self.__time.now().shift(self.timezone.timezone)
+
+    @property
+    def format_time(self):
+        return self.time.format_datetime()
+
+    @property
     def up_time(self):
-        print(self.__time.now() - self.__time)
-
-
+        return self.time - self.__time
 
     @property
-    def timezone(self): return self.__timezone
+    def location(self):
+        return self.__location
 
     @property
-    def time(self): return self.__time.now().shift(self.timezone.timezone)
-
-    @property
-    def format_time(self): print(self.time.format_datetime())
-
-
-
-    @property
-    def location(self): return self.__location
-
-    @location.setter
-    def location(self, place):
-        if type(place) == type(()):
-            if (place[0] <= 90 and place[0] >= -90) and (place[1] <= 90 and place[1] >= -90):
-                try:
-                    self.__location = self._geo_locator.reverse(place, addressdetails=True, language="en").raw
-                except AttributeError:
-                    print("ERROR ****** Check place input and network connection!******")
-            else:
-                print("ERROR ****** Coordinates out of range! Must be in the [-90; 90] range.******")
-                self.__location = None
-        elif type(place) == type(""):
-            try:
-                self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
-            except AttributeError:
-                print("ERROR ****** Check place input and network connection!******")
-        else: self.__location = None
-
-    @property
-    def coordinates(self): 
-        try: return (float(self.location["lat"]), float(self.location["lon"]))
+    def coordinates(self):
+        try:
+            return (float(self.location["lat"]), float(self.location["lon"]))
         except TypeError:
             print("Location not defined!")
             return
 
     @property
     def format_location(self):
-        try: print("Coordinates:".upper(), self.location["lat"], self.location["lon"])
+        try:
+            for key in self.location["address"]:
+                print("%s: %s" % (key.upper(), self.location["address"][key]))
         except TypeError:
             print("Location not defined!")
             return
 
-        for key in self.location["address"]: print("%s: %s" % (key.upper(), self.location["address"][key]))
+    @location.setter
+    def location(self, place):
+        try:
+            if type(place) == type(()):
+                self.__location = self._geo_locator.reverse(
+                    place, addressdetails=True, language="en"
+                ).raw
+            elif type(place) == type(""):
+                self.__location = self._geo_locator.geocode(
+                    place, addressdetails=True, language="en"
+                ).raw
+        except AttributeError:
+            print("ERROR ****** Check place and network connection! ******")
+        except ValueError:
+            print(
+                "ERROR ****** Please, provide a valid coordinate and try again! ******"
+            )

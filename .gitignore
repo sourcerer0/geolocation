@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 parser.py
+my_*
 cities15000.txt
 .Python
 .vscode/

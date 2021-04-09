@@ -1,12 +1,10 @@
 # geolocation
-[Geolocation Library](https://hub.docker.com/r/sourcerer2/geolocation)
+[Geolocation API](https://hub.docker.com/r/sourcerer2/geolocation)
 
 ## Installation
 Docker
 ``` shell script
-docker pull sourcerer2/geolocation:tagname
-
-docker run --name geo -it sourcerer2/geolocation
+docker pull sourcerer2/geolocation && docker run --name geo -it sourcerer2/geolocation
 ```
 
 ## Docs
@@ -16,11 +14,11 @@ docker run --name geo -it sourcerer2/geolocation
 ```python
 from geolocation import Location
 
-somewhere = Location("San José, California, USA")
+somewhere = Location("San Jose, California, USA")
 # somewhere = Location() //location is empty
 
 somewhere.location #raw location data
-# somewhere.location = "Beirut, Libanon" //redefine location
+# somewhere.location = "Beirut, Lebanon" //redefine location
 
 
 somewhere.coordinates #tuple

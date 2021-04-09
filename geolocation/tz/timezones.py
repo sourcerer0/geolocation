@@ -1,10 +1,11 @@
 from geopy.distance import great_circle
 
-class Timezones():
-    def __init__(self, tz = "UTC"):
+
+class Timezones:
+    def __init__(self, zone="UTC"):
         self.__file = open("geolocation/tz/COORD_DB.txt", "r")
 
-        self.__timezone = tz
+        self.__timezone = zone
 
     def set_timezone(self, coordinates):
         if type(coordinates) != type(()):
