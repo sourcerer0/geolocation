@@ -3,7 +3,7 @@ from delorean import Delorean
 from .tz import Timezones
 
 
-class Location():
+class Location:
     def __init__(self, location=None, **kwargs):
         self._geo_locator = Nominatim(user_agent="geolocator-elleaech")
 
@@ -11,10 +11,9 @@ class Location():
         self.__timezone = Timezones()
 
         if location != None:
-            self.location = (location)
+            self.location = location
         else:
             self.__location = {}
-
 
     @property
     def timezone(self):
@@ -30,9 +29,7 @@ class Location():
 
     @property
     def up_time(self):
-        return (self.time - self.__time)
-
-
+        return self.time - self.__time
 
     @property
     def location(self):
@@ -49,7 +46,8 @@ class Location():
     @property
     def format_location(self):
         try:
-            for key in self.location["address"]: print("%s: %s" % (key.upper(), self.location["address"][key]))
+            for key in self.location["address"]:
+                print("%s: %s" % (key.upper(), self.location["address"][key]))
         except TypeError:
             print("Location not defined!")
             return
@@ -57,11 +55,17 @@ class Location():
     @location.setter
     def location(self, place):
         try:
-            if (type(place) == type(())):
-                self.__location = self._geo_locator.reverse(place, addressdetails=True, language="en").raw
+            if type(place) == type(()):
+                self.__location = self._geo_locator.reverse(
+                    place, addressdetails=True, language="en"
+                ).raw
             elif type(place) == type(""):
-                self.__location = self._geo_locator.geocode(place, addressdetails=True, language="en").raw
+                self.__location = self._geo_locator.geocode(
+                    place, addressdetails=True, language="en"
+                ).raw
         except AttributeError:
             print("ERROR ****** Check place and network connection! ******")
         except ValueError:
-            print("ERROR ****** Please, provide a valid coordinate and try again! ******")
+            print(
+                "ERROR ****** Please, provide a valid coordinate and try again! ******"
+            )

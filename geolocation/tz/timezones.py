@@ -1,7 +1,8 @@
 from geopy.distance import great_circle
 
-class Timezones():
-    def __init__(self, zone = "UTC"):
+
+class Timezones:
+    def __init__(self, zone="UTC"):
         self.__file = open("geolocation/tz/COORD_DB.txt", "r")
 
         self.__timezone = zone
