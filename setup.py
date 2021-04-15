@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="geolocation",
-    version="1.1.0-a.1",
+    version="1.1.0",
     author="Lo Han",
     author_email="lohan.uchsa@protonmail.com",
     description="Geolocation Library",
