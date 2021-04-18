@@ -4,13 +4,18 @@
 ## Installation
 Docker
 ``` shell script
-docker pull sourcerer2/geolocation && docker run --name geo -it sourcerer2/geolocation
+docker pull sourcerer2/geolocation
 ```
 
 ## Docs
 - [API Reference](https://github.com/elleaech/geolocation/blob/master/docs/location.md)
 
 ### Basic Usage
+Run:
+``` bash
+docker run --name geo -it sourcerer2/geolocation
+```
+
 ```python
 from geolocation import Location
 
