@@ -1,6 +1,6 @@
 from geopy.geocoders import Nominatim
 from delorean import Delorean
-from .tz import Timezones
+from tz import Timezones
 
 
 class Location:
@@ -69,3 +69,11 @@ class Location:
             print(
                 "ERROR ****** Please, provide a valid coordinate and try again! ******"
             )
+
+
+if __name__ == "__main__":
+    geo = Location(location="Rio de Janeiro, Brasil")
+    geo.format_location
+    geo.timezone
+    geo.timezone.set_timezone(geo.coordinates)
+    geo.format_time
