@@ -41,9 +41,9 @@ class Location:
     @location.setter
     def location(self, place):
         try:
-            if type(place) == type(()):
+            if type(place) == type(Coordinate(0.0, 0.0)):
                 self._location = self.__geo_locator.reverse(
-                    place, addressdetails=True, language="en"
+                    (place.lat, place.lon), addressdetails=True, language="en"
                 ).raw
             elif type(place) == type(""):
                 self._location = self.__geo_locator.geocode(
