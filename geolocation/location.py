@@ -46,29 +46,20 @@ class Location:
     @location.setter
     def location(self, place: str):
         try:
-            nominatim_data = self.__geo_locator.geocode(
-                place, addressdetails=True, language="en"
-            ).raw
+            if type(place) == type(Coordinate(0.0, 0.0)):
+                print("here")
+                nominatim_data = self.__geo_locator.reverse(
+                    place(), addressdetails=True, language="en"
+                ).raw
+            else:
+                nominatim_data = self.__geo_locator.geocode(
+                    place, addressdetails=True, language="en"
+                ).raw
 
-            self._location(nominatim_data)
+            self._location = Address(nominatim_data)
         except (AttributeError, ValueError):
             print("ERROR ****** Check input and network connection! ******")
-            return
-
-        self._coordinate = self._coordinate(
-            float(nominatim_data["lat"]), float(nominatim_data["lon"])
-        )
-
-    @location.setter
-    def location(self, place: Coordinate):
-        try:
-            nominatim_data = self.__geo_locator.geocode(
-                (place.lat, place.lon), addressdetails=True, language="en"
-            ).raw
-
-            self._location(nominatim_data)
-        except (AttributeError, ValueError):
-            print("ERROR ****** Check input and network connection! ******")
+            raise
             return
 
         self._coordinate = self._coordinate(

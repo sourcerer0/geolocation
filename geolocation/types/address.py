@@ -2,7 +2,7 @@ class Address:
     def __init__(self, Nominatim: dict):
         self._osm = {
             "place_id": Nominatim["place_id"],
-            "licence": Nominatim["license"],
+            "licence": Nominatim["licence"],
             "osm_type": Nominatim["osm_type"],
             "osm_id": Nominatim["osm_id"],
         }
@@ -11,8 +11,12 @@ class Address:
 
     def __call__(self):
         for index in self._address:
-            print("{}: {}\n".format(index, self._address[index]))
+            print("{}: {}".format(index, self._address[index]))
 
     def get_osm_data(self):
+        print(self._osm["licence"])
+
         for index in self._osm:
-            print("{}: {}\n".format(index, self._osm[index]))
+            if index == "licence":
+                continue
+            print("{}: {}".format(index, self._osm[index]))
