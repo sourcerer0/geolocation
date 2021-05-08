@@ -3,6 +3,7 @@ from delorean import Delorean
 
 from geolocation.tzone import Timezones
 from geolocation.types import Coordinate
+from geolocation.types import Address
 
 
 class Location:
@@ -16,11 +17,15 @@ class Location:
         if location != None:
             self.location = location
         else:
-            self._location = {}
+            self._location = Address
 
     @property
     def timezone(self):
         return self._timezone
+
+    @timezone.setter
+    def timezone(self, coordinates: Coordinate):
+        self._timezone.set_timezone(coordinates)
 
     @property
     def time(self):
@@ -39,26 +44,24 @@ class Location:
         return self._location
 
     @location.setter
-    def location(self, place):
+    def location(self, place: str):
         try:
             if type(place) == type(Coordinate(0.0, 0.0)):
-                self._location = self.__geo_locator.reverse(
-                    (place.lat, place.lon), addressdetails=True, language="en"
+                print("here")
+                nominatim_data = self.__geo_locator.reverse(
+                    place(), addressdetails=True, language="en"
                 ).raw
-            elif type(place) == type(""):
-                self._location = self.__geo_locator.geocode(
+            else:
+                nominatim_data = self.__geo_locator.geocode(
                     place, addressdetails=True, language="en"
                 ).raw
 
-        except AttributeError:
-            print("ERROR ****** Check place and network connection! ******")
-            return
-        except ValueError:
-            print(
-                "ERROR ****** Please, provide a valid coordinate and try again! ******"
-            )
+            self._location = Address(nominatim_data)
+        except (AttributeError, ValueError):
+            print("ERROR ****** Check input and network connection! ******")
+            raise
             return
 
-        self._coordinate = Coordinate(
-            float(self._location["lat"]), float(self._location["lon"])
+        self._coordinate = self._coordinate(
+            float(nominatim_data["lat"]), float(nominatim_data["lon"])
         )
