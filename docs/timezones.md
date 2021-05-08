@@ -19,7 +19,7 @@ zone
 ### set_timezone()
 ```
 - Description: Find best timezone match
-- Parameters: coordinates <tuple>
+- Parameters: Coordinates <class>
 - Return: dictionary
     - Keys: "name", "distance" and "tz"
 ```
