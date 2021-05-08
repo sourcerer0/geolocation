@@ -1,2 +1,2 @@
 from geolocation.types.coordinate import Coordinate
-from geolocation.types.file import File
+from geolocation.types.files import ReadOnlyFile
