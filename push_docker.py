@@ -1,6 +1,9 @@
 import subprocess
 import sys
 
+USER = "sourcerer2"
+REPO = "geolocation"
+
 try:
     TAG = sys.argv[1]
 except IndexError:
@@ -8,8 +11,9 @@ except IndexError:
     print("\tExample: python3 push_docker.py 1.0")
     sys.exit()
 
-USER = "sourcerer2"
-REPO = "geolocation"
+if sys.argv[1] == "--help" or sys.argv[1] == "help":
+    print("Command example: python3 push_docker.py 1.0")
+    sys.exit()
 
 if (
     subprocess.run(["docker", "rmi", "{0}/{1}:latest".format(USER, REPO)]).returncode
