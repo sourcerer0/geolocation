@@ -18,7 +18,7 @@ class Timezones:
             print("ERROR ****** Coordinates not accepted!******")
             return
 
-        self._file.get_line(1)
+        self._file.reset_read()
         print("Finding best timezone match...")
 
         for line in self._file.read():
