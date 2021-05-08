@@ -1,1 +1,1 @@
-from geolocation.types.files import ReadOnlyFile
+from geolocation.types.files.file import ReadOnlyFile

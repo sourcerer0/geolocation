@@ -7,22 +7,26 @@ class File:
         return self._file
 
     def find_pattern(self, line_pattern: str):
-        self.get_line(1)
+        number_of_occurrencies = 0
 
         for line, content in enumerate(self.read()):
-            if line_pattern in line:
+            if line_pattern in content:
                 print("{}\t{}".format((line + 1), content))
+                number_of_occurrencies += 1
+        return number_of_occurrencies
 
-    def read(self, line_number=-1):
-        self.get_line(1)
-        return self._file.readlines(line_number)
+    def get_line(self, input_line: int):
+        input_line -= 1
+        for position, content in enumerate(self.read()):
+            if position == input_line:
+                return content
 
-    def get_line(self, line: int):
-        try:
-            self._file.seek((line - 1))
-        except:
-            return ""
-        return self._file.readline()
+    def read(self, lines_number=-1):
+        self.reset_read()
+        return self._file.readlines(lines_number)
+
+    def reset_read(self):
+        self._file.seek(0)
 
 
 class ReadOnlyFile(File):
