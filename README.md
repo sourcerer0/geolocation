@@ -26,8 +26,8 @@ somewhere.location #raw location data
 # somewhere.location = "Beirut, Lebanon" //redefine location
 
 
-somewhere.coordinates #tuple
-somewhere.format_location #formatted location data
+somewhere.coordinates.lat
+somewhere.coordinates.lon
 
 somewhere.timezone #UTC
 somewhere.timezone.set_timezone(somewhere.coordinates) #search for location's timezone
@@ -35,8 +35,6 @@ somewhere.timezone.set_timezone(somewhere.coordinates) #search for location's ti
 somewhere.time #raw time data
 somewhere.format_time
 
-
-somewhere.up_time() #init time
 ```
 
 ## Contributing & Issue Tracker

@@ -1,79 +1,64 @@
 from geopy.geocoders import Nominatim
 from delorean import Delorean
-from tz import Timezones
+
+from geolocation.tzone import Timezones
+from geolocation.types import Coordinate
 
 
 class Location:
     def __init__(self, location=None, **kwargs):
-        self._geo_locator = Nominatim(user_agent="geolocator-elleaech")
+        self.__geo_locator = Nominatim(user_agent="geolocator-elleaech")
 
-        self.__time = Delorean()
-        self.__timezone = Timezones()
+        self._time = Delorean()
+        self._timezone = Timezones()
+        self._coordinate = Coordinate
 
         if location != None:
             self.location = location
         else:
-            self.__location = {}
+            self._location = {}
 
     @property
     def timezone(self):
-        return self.__timezone
+        return self._timezone
 
     @property
     def time(self):
-        return self.__time.now().shift(self.timezone.timezone)
+        return self._time.now().shift(self._timezone.timezone)
 
     @property
     def format_time(self):
         return self.time.format_datetime()
 
     @property
-    def up_time(self):
-        return self.time - self.__time
+    def coordinates(self):
+        return self._coordinate
 
     @property
     def location(self):
-        return self.__location
-
-    @property
-    def coordinates(self):
-        try:
-            return (float(self.location["lat"]), float(self.location["lon"]))
-        except TypeError:
-            print("Location not defined!")
-            return
-
-    @property
-    def format_location(self):
-        try:
-            for key in self.location["address"]:
-                print("%s: %s" % (key.upper(), self.location["address"][key]))
-        except TypeError:
-            print("Location not defined!")
-            return
+        return self._location
 
     @location.setter
     def location(self, place):
         try:
-            if type(place) == type(()):
-                self.__location = self._geo_locator.reverse(
-                    place, addressdetails=True, language="en"
+            if type(place) == type(Coordinate(0.0, 0.0)):
+                self._location = self.__geo_locator.reverse(
+                    (place.lat, place.lon), addressdetails=True, language="en"
                 ).raw
             elif type(place) == type(""):
-                self.__location = self._geo_locator.geocode(
+                self._location = self.__geo_locator.geocode(
                     place, addressdetails=True, language="en"
                 ).raw
+
         except AttributeError:
             print("ERROR ****** Check place and network connection! ******")
+            return
         except ValueError:
             print(
                 "ERROR ****** Please, provide a valid coordinate and try again! ******"
             )
+            return
 
-
-if __name__ == "__main__":
-    geo = Location(location="Rio de Janeiro, Brasil")
-    geo.format_location
-    geo.timezone
-    geo.timezone.set_timezone(geo.coordinates)
-    geo.format_time
+        self._coordinate = Coordinate(
+            float(self._location["lat"]), float(self._location["lon"])
+        )

@@ -2,11 +2,11 @@
 ## Parameters
 ```
 location
-- Type: string or tuple or None
+- Type: string or Coordinates or None
 
 If string: Address or Region
-If tuple: Coordinates
-If None (standard): Must be defined with obj.location = <tuple or string>
+If Coordinates: Coordinates
+If None (standard): Must be defined with obj.location = <Coordinates or string>
 ```
 
 ## Properties
@@ -35,7 +35,7 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 - Type: dict
 ```
 
-### format_location
+### format_location (old)
 ```
 - Description: Most useful, formatted information about location
 ```
@@ -43,9 +43,10 @@ If None (standard): Must be defined with obj.location = <tuple or string>
 ### coordinates
 ```
 - Description: Coordinates from location
+- Type: Coordinates <class>
 ```
 
-### up_time
+### up_time (old)
 ```
 - Description: Print time when Location was instantiated
 ```
