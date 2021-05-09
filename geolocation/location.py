@@ -16,6 +16,7 @@ class Location:
 
         if location != None:
             self.location = location
+            self.timezone = self.coordinates
         else:
             self._location = Address
 
@@ -45,9 +46,10 @@ class Location:
 
     @location.setter
     def location(self, place: str):
+        print("Fetching location content...")
+
         try:
             if type(place) == type(Coordinate(0.0, 0.0)):
-                print("here")
                 nominatim_data = self.__geo_locator.reverse(
                     place(), addressdetails=True, language="en"
                 ).raw
@@ -59,7 +61,6 @@ class Location:
             self._location = Address(nominatim_data)
         except (AttributeError, ValueError):
             print("ERROR ****** Check input and network connection! ******")
-            raise
             return
 
         self._coordinate = self._coordinate(
