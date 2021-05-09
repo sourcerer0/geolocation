@@ -49,7 +49,7 @@ class Location:
         print("Fetching location content...")
 
         try:
-            if type(place) == type(Coordinate(0.0, 0.0)):
+            if type(place) == type(Coordinate(0, 0)):
                 nominatim_data = self.__geo_locator.reverse(
                     place(), addressdetails=True, language="en"
                 ).raw
