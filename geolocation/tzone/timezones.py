@@ -1,12 +1,12 @@
 from geolocation.types.coordinate import Coordinate
-from geolocation.types.file import File
+from geolocation.types.files import ReadOnlyFile
 
 from geopy.distance import great_circle
 
 
 class Timezones:
     def __init__(self, zone="UTC"):
-        self._file = File("geolocation/data/COORD_DB.txt")
+        self._file = ReadOnlyFile("geolocation/data/COORD_DB.txt")
         self._referencial_place = {"distance": 1000}
         self._timezone = zone
 
@@ -14,7 +14,7 @@ class Timezones:
         return "Timezone: {}".format(self._timezone)
 
     def set_timezone(self, coordinates: Coordinate):
-        if type(coordinates) != type(Coordinate(0.0, 0.0)):
+        if type(coordinates) != type(Coordinate(0, 0)):
             print("ERROR ****** Coordinates not accepted!******")
             return
 
