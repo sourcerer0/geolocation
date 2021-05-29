@@ -14,7 +14,7 @@ class Timezones:
         return "Timezone: {}".format(self._timezone)
 
     def set_timezone(self, coordinates: Coordinate):
-        if type(coordinates) != type(Coordinate(0.0, 0.0)):
+        if type(coordinates) != type(Coordinate(0, 0)):
             print("ERROR ****** Coordinates not accepted!******")
             return
 

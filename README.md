@@ -19,21 +19,19 @@ docker run --name geo -it sourcerer2/geolocation
 ```python
 from geolocation import Location
 
+somehere  = Location() #all empty
 somewhere = Location("San Jose, California, USA")
-# somewhere = Location() //location is empty
 
-somewhere.location #raw location data
-# somewhere.location = "Beirut, Lebanon" //redefine location
+somewhere.location()
+somewhere.location = "Beirut, Lebanon" #redefine location
 
+somewhere.coordinates() #get coordinates tuple
 
-somewhere.coordinates.lat
-somewhere.coordinates.lon
+somewhere.timezone
+somewhere.timezone = <some coordinates> #redefine timezone
 
-somewhere.timezone #UTC
-somewhere.timezone.set_timezone(somewhere.coordinates) #search for location's timezone
-
-somewhere.time #raw time data
-somewhere.format_time
+somewhere.time
+somewhere.format_time #prettify above result
 
 ```
 
