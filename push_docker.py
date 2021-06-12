@@ -37,7 +37,6 @@ if (
             "{0}/{1}:latest".format(USER, REPO),
         ]
     )
-    """
     subprocess.run(
         [
             "docker",
@@ -51,7 +50,7 @@ if (
             "push",
             "{0}/{1}:latest".format(USER, REPO),
         ]
-    )"""
+    )
 
 else:
     print("Couldn't build image... Finish program")
