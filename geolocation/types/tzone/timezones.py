@@ -1,5 +1,6 @@
 from geolocation.types.coordinate import Coordinate
-from geolocation.types.files import ReadOnlyFile
+
+# from geolocation.types.database import Database
 
 from geopy.distance import great_circle
 

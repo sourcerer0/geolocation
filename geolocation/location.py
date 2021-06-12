@@ -1,7 +1,7 @@
 from geopy.geocoders import Nominatim
 from delorean import Delorean
 
-from geolocation.tzone import Timezones
+from geolocation.types import Timezones
 from geolocation.types import Coordinate
 from geolocation.types import Address
 

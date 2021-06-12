@@ -1,1 +1,0 @@
-from geolocation.types.files.file import ReadOnlyFile
