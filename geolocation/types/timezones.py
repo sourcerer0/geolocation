@@ -1,13 +1,11 @@
 from geolocation.types.coordinate import Coordinate
-
-# from geolocation.types.database import Database
-
+from geolocation.types.database import Database
 from geopy.distance import great_circle
 
 
 class Timezones:
     def __init__(self, zone="UTC"):
-        self._file = ReadOnlyFile("geolocation/data/COORD_DB.txt")
+        self._file = Database()
         self._referencial_place = {"distance": 1000}
         self._timezone = zone
 
