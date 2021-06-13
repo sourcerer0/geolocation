@@ -13,6 +13,9 @@ class Address:
         for index in self._address:
             print("{}: {}".format(index, self._address[index]))
 
+    def get_address(self):
+        return self._address
+
     def get_osm_data(self):
         print(self._osm["licence"])
 
