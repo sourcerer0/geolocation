@@ -28,12 +28,18 @@ class _Marker:
         return marker_address.location
 
     def _convert_address_to_popup(self, address: Address):
-        popup = dumps(address.get_address()).split('"')
+        popup_msg = dumps(address.get_address(), ensure_ascii=False).split('"')
         popup_formatted = ""
 
         count = 1
-        while count < len(popup):
-            popup_formatted += "{}: {}\n".format(popup[count], popup[count + 2])
+        while count < len(popup_msg) - 4:
+            popup_formatted += "{}:<br>{}<br><br>".format(
+                popup_msg[count].upper(),
+                popup_msg[count + 2],
+            )
             count += 4
 
-        return popup_formatted
+        iframe = folium.IFrame(popup_formatted, width=200, height=280)
+        popup = folium.Popup(iframe, max_width=200)
+
+        return popup
