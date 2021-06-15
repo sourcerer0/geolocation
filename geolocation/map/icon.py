@@ -20,9 +20,7 @@ class _Icon:
             "pink",
             "lightblue",
             "lightgreen",
-            "gray",
             "black",
-            "lightgray",
         ]
 
         self._color = color
@@ -31,11 +29,13 @@ class _Icon:
 
         if self._check_color_options():
             self._icon = folium.Icon(
-                color=self._color, color_icon=self._inside_color, icon=self._icon_type
+                color=self._color, icon_color=self._inside_color, icon=self._icon_type
             )
 
         else:
-            return None
+            self._icon = folium.Icon(
+                color="lightgray", icon_color="lightgray", icon=self._icon_type
+            )
 
     def __call__(self):
         return self._icon
