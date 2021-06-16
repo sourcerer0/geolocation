@@ -6,33 +6,31 @@ from .database import Database
 
 class Timezones:
     def __init__(self, zone="UTC"):
-        self._file = Database()
-        self._referencial_place = {"distance": 1000}
+        self._timezones_database = Database("databases/tzones_database.db")
+
+        self._best_match = {"distance": 1000}
         self._timezone = zone
 
     def __call__(self):
-        return "Timezone: {}".format(self._timezone)
+        return self._timezone
 
     def set_timezone(self, coordinates: Coordinate):
         if type(coordinates) != type(Coordinate(0, 0)):
             print("ERROR ****** Coordinates not accepted!******")
             return
 
-        self._file.reset_read()
         print("Finding best timezone match...")
-
-        for line in self._file.read():
-            line = line.split("\t")
+        for line in self._timezones_database.get_data_list("timezones_coordinates"):
 
             distance = great_circle(
                 (coordinates.lat, coordinates.lon), (float(line[1]), float(line[2]))
             ).km
 
-            if distance < self._referencial_place["distance"]:
-                self._referencial_place["name"] = line[0]
-                self._referencial_place["distance"] = distance
-                self._referencial_place["tz"] = line[4].split("\n")[0]
+            if distance < self._best_match["distance"]:
+                self._best_match["name"] = line[0]
+                self._best_match["distance"] = distance
+                self._best_match["tz"] = line[4]
 
-        self._timezone = self._referencial_place["tz"]
+        self._timezone = self._best_match["tz"]
 
-        return self._referencial_place
+        return self._best_match
