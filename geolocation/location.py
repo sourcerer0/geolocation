@@ -57,9 +57,9 @@ class Location:
 
     @property
     def time(self):
-        return self._time.now().shift(self._timezone.timezone)
+        return self._time.now().shift(self._timezone())
 
-    def time(self):
+    def ftime(self):
         return self.time.format_datetime()
 
     @property
