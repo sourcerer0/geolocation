@@ -9,9 +9,11 @@ from .icon import _Icon
 
 
 class _Marker:
-    def __init__(self, color: str, icon_type: str, inside_color: str):
+    def __init__(self, color: str, icon_type: str, inside_color: str, id_prefix: str):
         self._tooltip = "Click me!"
-        self._icon = _Icon(color, icon_type, inside_color=inside_color)
+        self._icon = _Icon(
+            color, icon_type, inside_color=inside_color, prefix=id_prefix
+        )
 
     def mark_location(self, coordinates: Coordinate):
         marker_address = self._get_marker_address(coordinates)

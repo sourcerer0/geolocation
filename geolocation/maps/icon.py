@@ -2,7 +2,9 @@ import folium
 
 
 class _Icon:
-    def __init__(self, color: str, icon_type: str, inside_color: str = "white"):
+    def __init__(
+        self, color: str, icon_type: str, id_prefix: str, inside_color: str = "white"
+    ):
         self.__color_options = [
             "red",
             "blue",
@@ -29,7 +31,10 @@ class _Icon:
 
         if self._check_color_options():
             self._icon = folium.Icon(
-                color=self._color, icon_color=self._inside_color, icon=self._icon_type
+                color=self._color,
+                icon_color=self._inside_color,
+                icon=self._icon_type,
+                prefix=id_prefix,
             )
 
         else:
