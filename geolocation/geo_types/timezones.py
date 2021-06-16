@@ -10,7 +10,7 @@ class Timezones:
         self._referencial_place = {"distance": 1000}
         self._timezone = zone
 
-    def __repr__(self):
+    def __call__(self):
         return "Timezone: {}".format(self._timezone)
 
     def set_timezone(self, coordinates: Coordinate):
@@ -36,7 +36,3 @@ class Timezones:
         self._timezone = self._referencial_place["tz"]
 
         return self._referencial_place
-
-    @property
-    def timezone(self):
-        return self._timezone

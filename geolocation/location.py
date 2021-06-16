@@ -12,8 +12,8 @@ class Location:
 
         self._time = Delorean()
         self._timezone = Timezones()
-        self._coordinate = Coordinate
 
+        self._coordinate = Coordinate
         self._location = Address
 
         if location != None:
@@ -27,18 +27,6 @@ class Location:
     @timezone.setter
     def timezone(self, coordinates: Coordinate):
         self._timezone.set_timezone(coordinates)
-
-    @property
-    def time(self):
-        return self._time.now().shift(self._timezone.timezone)
-
-    @property
-    def format_time(self):
-        return self.time.format_datetime()
-
-    @property
-    def coordinates(self):
-        return self._coordinate
 
     @property
     def location(self):
@@ -66,3 +54,14 @@ class Location:
         self._coordinate = self._coordinate(
             float(nominatim_data["lat"]), float(nominatim_data["lon"])
         )
+
+    @property
+    def time(self):
+        return self._time.now().shift(self._timezone.timezone)
+
+    def time(self):
+        return self.time.format_datetime()
+
+    @property
+    def coordinates(self):
+        return self._coordinate
