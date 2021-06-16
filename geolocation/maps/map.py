@@ -6,9 +6,11 @@ from .marker import _Marker
 
 
 class Map:
-    def __init__(self, coordinates: Coordinate, zoom: int = 20):
+    def __init__(
+        self, coordinates: Coordinate, zoom: int = 20, live_marker: bool = False
+    ):
         self._current_coordinates = coordinates
-        self._map_init(zoom)
+        self._map_init(zoom, live_marker)
 
         self._marked_places = list()
 
@@ -38,9 +40,13 @@ class Map:
             print("here")
             marked_place.add_to(self._map_view)
 
-    def _map_init(self, zoom: int):
+    def _map_init(self, zoom: int, live_marker: bool):
         self._map_view = folium.Map(
             location=_convert_coordinates_to_list(self._current_coordinates),
             zoom_start=zoom,
             min_zoom=3,
         )
+
+        self._map_view.add_child(folium.LatLngPopup())
+        if live_marker:
+            self._map_view.add_child(folium.ClickForMarker(popup="Waypoint"))
