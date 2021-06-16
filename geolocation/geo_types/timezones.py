@@ -1,6 +1,7 @@
-from geolocation.types.coordinate import Coordinate
-from geolocation.types.database import Database
 from geopy.distance import great_circle
+
+from .coordinate import Coordinate
+from .database import Database
 
 
 class Timezones:

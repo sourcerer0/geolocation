@@ -1,10 +1,11 @@
 from json import dumps
 
 import folium
-from geolocation import Location
-from geolocation.map import _Icon
-from geolocation.types import Address, Coordinate
-from geolocation.map import _convert_coordinates_to_list
+
+from .. import Location
+from ..geo_types import Address, Coordinate
+from ._convert_coordinates import _convert_coordinates_to_list
+from .icon import _Icon
 
 
 class _Marker:

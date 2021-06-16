@@ -1,9 +1,9 @@
 from geopy.geocoders import Nominatim
 from delorean import Delorean
 
-from geolocation.types import Timezones
-from geolocation.types import Coordinate
-from geolocation.types import Address
+from .geo_types import Timezones
+from .geo_types import Coordinate
+from .geo_types import Address
 
 
 class Location:
@@ -14,11 +14,11 @@ class Location:
         self._timezone = Timezones()
         self._coordinate = Coordinate
 
+        self._location = Address
+
         if location != None:
             self.location = location
             self.timezone = self.coordinates
-        else:
-            self._location = Address
 
     @property
     def timezone(self):

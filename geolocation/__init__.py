@@ -1,2 +1,2 @@
-from geolocation.location import Location
-from geolocation.map import Map
+from .location import Location
+from .maps import Map

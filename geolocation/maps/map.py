@@ -1,7 +1,8 @@
-from geolocation.types import Coordinate
-from geolocation.map import _Marker
-from geolocation.map import _convert_coordinates_to_list
 import folium
+
+from ..geo_types import Coordinate
+from ._convert_coordinates import _convert_coordinates_to_list
+from .marker import _Marker
 
 
 class Map:
