@@ -1,30 +1,29 @@
 import folium
 
 from ..geo_types import Coordinate
+from .marker_str import Marker_Store
 from ._convert_coordinates import _convert_coordinates_to_list
-from .marker import _Marker
 
 
 class Map:
     def __init__(
-        self, coordinates: Coordinate, zoom: int = 20, live_marker: bool = False
+        self,
+        coordinates: Coordinate,
+        markers: Marker_Store,
+        zoom: int = 20,
+        live_marker: bool = True,
     ):
-        self._current_coordinates = coordinates
+        self._current_view_coordinates = coordinates
         self._map_init(zoom, live_marker)
+        self._marker_store = markers
 
-        self._marked_places = list()
-
-    def spot(
-        self, coordinates: Coordinate, color: str, icon_type: str, inside_color: str
-    ):
-        marker = _Marker(color, icon_type, inside_color)
-        marked_location = marker.mark_location(coordinates)
-
-        self._marked_places.append(marked_location)
-        marked_location.add_to(self._map_view)
+    def spot(self, coordinates: Coordinate, marker_id: str):
+        marked_location = self._marker_store.add_marked_place(coordinates, marker_id)
+        if marked_location != None:
+            marked_location.add_to(self._map_view)
 
     def update_view_coordinates(self, coordinates: Coordinate):
-        self._current_coordinates = coordinates
+        self._current_view_coordinates = coordinates
         self._map_view.location = _convert_coordinates_to_list(coordinates)
 
     def update_map_zoom(self, zoom: int):
@@ -36,13 +35,12 @@ class Map:
         return self._map_view.save(output_file)
 
     def _mark_saved_locations(self):
-        for marked_place in self._marked_places:
-            print("here")
+        for marked_place in self._marker_store.get_marked_locations():
             marked_place.add_to(self._map_view)
 
     def _map_init(self, zoom: int, live_marker: bool):
         self._map_view = folium.Map(
-            location=_convert_coordinates_to_list(self._current_coordinates),
+            location=_convert_coordinates_to_list(self._current_view_coordinates),
             zoom_start=zoom,
             min_zoom=3,
         )
