@@ -38,7 +38,7 @@ class _Marker:
 
     def _convert_spotted_location_to_popup(self, address: Address, time: str):
         popup_msg = dumps(address.get_address(), ensure_ascii=False).split('"')
-        popup_formatted = time
+        popup_formatted = "{}<br><br>".format(time)
 
         count = 1
         while count < len(popup_msg) - 4:
