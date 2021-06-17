@@ -14,25 +14,31 @@ class _Marker:
         self._icon = _Icon(
             color, icon_type, inside_color=inside_color, prefix=id_prefix
         )
+        self._spotted_location = Location()
 
     def mark_location(self, coordinates: Coordinate):
         marker_address = self._get_marker_address(coordinates)
-        marker_address = self._convert_address_to_popup(marker_address)
+        address_time = self._get_address_time()
+
+        popup = self._convert_spotted_location_to_popup(marker_address, address_time)
 
         return folium.Marker(
             _convert_coordinates_to_list(coordinates),
             tooltip=self._tooltip,
-            popup=marker_address,
+            popup=popup,
             icon=self._icon(),
         )
 
     def _get_marker_address(self, coordinates: Coordinate):
-        marker_address = Location(coordinates)
-        return marker_address.location
+        self._spotted_location = coordinates
+        return self._spotted_location.location
 
-    def _convert_address_to_popup(self, address: Address):
+    def _get_address_time(self):
+        return self._spotted_location.ftime()
+
+    def _convert_spotted_location_to_popup(self, address: Address, time: str):
         popup_msg = dumps(address.get_address(), ensure_ascii=False).split('"')
-        popup_formatted = ""
+        popup_formatted = time
 
         count = 1
         while count < len(popup_msg) - 4:
