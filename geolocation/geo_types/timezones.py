@@ -1,12 +1,12 @@
 from geopy.distance import great_circle
 
 from .coordinate import Coordinate
-from .database import Database
+from .database import RO_Database
 
 
 class Timezones:
     def __init__(self, zone="UTC"):
-        self._timezones_database = Database("databases/tzones_database.db")
+        self._timezones_database = RO_Database("databases/tzones_database.db")
 
         self._best_match = {"distance": 1000}
         self._timezone = zone
