@@ -15,18 +15,12 @@ class Map:
     ):
         self._current_view_coordinates = coordinates
         self._map_init(zoom, live_marker)
-        self._marker_handler = markers
+        self._marker_store = markers
 
     def spot(self, coordinates: Coordinate, marker_id: str):
-        marker = self._marker_handler.get_marker(marker_id)
-
-        if marker == None:
-            return
-
-        marked_location = marker.mark_location(coordinates)
-
-        self._marker_handler.add_marked_place(marked_location)
-        marked_location.add_to(self._map_view)
+        marked_location = self._marker_store.add_marked_place(coordinates, marker_id)
+        if marked_location != None:
+            marked_location.add_to(self._map_view)
 
     def update_view_coordinates(self, coordinates: Coordinate):
         self._current_view_coordinates = coordinates
@@ -41,7 +35,7 @@ class Map:
         return self._map_view.save(output_file)
 
     def _mark_saved_locations(self):
-        for marked_place in self._marker_handler.get_marked_locations():
+        for marked_place in self._marker_store.get_marked_locations():
             marked_place.add_to(self._map_view)
 
     def _map_init(self, zoom: int, live_marker: bool):

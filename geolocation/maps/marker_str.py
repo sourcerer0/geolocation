@@ -1,5 +1,5 @@
+from ..geo_types import Coordinate
 from .marker import _Marker
-from folium import Marker
 
 
 class Marker_Store:
@@ -18,8 +18,18 @@ class Marker_Store:
         marker = _Marker(color, icon_type, inside_color, id_prefix)
         self._markers_dictionary[marker_id] = marker
 
-    def add_marked_place(self, marked_location: Marker):
+    def add_marked_place(self, coordinates: Coordinate, marker_id: str):
+        marker = self.get_marker(marker_id)
+
+        if marker == None:
+            print("INVALID MARKER ID!")
+            return
+
+        marked_location = marker.mark_location(coordinates)
+
         self._marked_places.append(marked_location)
+
+        return marked_location
 
     def get_marker(self, marker_id: str):
         if marker_id in self._markers_dictionary:
